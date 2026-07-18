@@ -1,5 +1,12 @@
 import Link from 'next/link';
 import './globals.css'
+import { Inter, IBM_Plex_Sans, Source_Sans_3 } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const sourceSans3Heading = Source_Sans_3({subsets:['latin'],variable:'--font-heading'});
+
+const ibmPlexSans = IBM_Plex_Sans({subsets:['latin'],variable:'--font-sans'});
+
 
 export default function RootLayout({
   children,
@@ -9,16 +16,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`h-full antialiased`}
+      className={cn("h-full", "antialiased", "font-sans", ibmPlexSans.variable, sourceSans3Heading.variable)}
     >
       <body className="min-h-full flex flex-col">
-        <div className='py-4 flex gap-2'>
-          <Link href={'/'} className='px-2 py-1 border bg-red-600 w-fit rounded'>home</Link>
-        <Link href={'/blog'} className='px-2 py-1 border bg-red-600 w-fit rounded'>blogs</Link>
-        <Link href={'/blog/author'} className='px-2 py-1 border bg-red-600 w-fit rounded'>author</Link>
-        </div>
         {children}
-        <p>this is footer</p>
       </body>
     </html>
   );

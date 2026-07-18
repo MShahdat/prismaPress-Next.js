@@ -1,11 +1,11 @@
 import React from 'react';
 
-const page = () => {
+const NewsByIdPage = () => {
   return (
     <div>
-      this is author page
+      
     </div>
   );
 };
 
-export default page;
+export default NewsByIdPage;
