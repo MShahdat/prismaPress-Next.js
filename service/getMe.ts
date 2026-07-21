@@ -20,10 +20,9 @@ export const getMe = async () => {
     headers: {
       // Authorization: accessToken as unknown as string,
       // Authorization: `${accessToken}`,
-      // Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
 
-
-      Cookie: `accessToken= ${accessToken}`
+      Cookie: `accessToken=${accessToken}`
     },
     cache: "force-cache",
     next: {
@@ -32,7 +31,7 @@ export const getMe = async () => {
     }
   })
 
-  const result = res.json()
+  const result = await res.json()
   console.log('result ', result)
 
   return result

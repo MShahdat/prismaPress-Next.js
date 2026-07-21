@@ -3,6 +3,9 @@
 
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
+import jwt, { JwtPayload } from 'jsonwebtoken'
+
+
 
 type LoginState = {
   success: true
@@ -64,8 +67,8 @@ export const loginAction = async (previousSatae: LoginState, formData: FormData)
 
   //& set cookies
   if (result.success) {
-    const accessToken = result.data.accessToken
-    const refreshToken = result.data.refreshToken
+    const accessToken = result?.data?.accessToken
+    const refreshToken = result?.data?.refreshToken
 
     cookieStore.set("accessToken", accessToken, {
       secure: process.env.NODE_ENV === "production",
@@ -79,7 +82,22 @@ export const loginAction = async (previousSatae: LoginState, formData: FormData)
       httpOnly: true,
       sameSite: "lax",
     })
-    redirect('/dashboard')
+
+    const decodeToken = jwt.decode(accessToken) as JwtPayload
+    console.log('decoded user ', decodeToken)
+
+    if (decodeToken.role === 'USER') {
+      redirect('/dashboard')
+    }
+    else if (decodeToken.role === 'AUTHOR') {
+      redirect('/author-dashboard')
+    }
+    else if (decodeToken.role === 'ADMIN') {
+      redirect('/admin-dashboard')
+    }
+
+    // redirect('/dashboard')
+
   }
 
   return result

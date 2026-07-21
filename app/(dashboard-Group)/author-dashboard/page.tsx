@@ -3,7 +3,7 @@ import React from 'react';
 const AuthorDashboardpage = () => {
   return (
     <div>
-AuthorDashboardpage
+      AuthorDashboardpage
     </div>
   );
 };
