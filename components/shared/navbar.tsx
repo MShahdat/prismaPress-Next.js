@@ -13,6 +13,9 @@ import {
   LifeBuoy,
   LogOut,
   Menu,
+  Crown,
+  Newspaper,
+  Contact,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -34,10 +37,12 @@ import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 
 const navLinks = [
-  { label: "Dashboard", href: "/", icon: LayoutDashboard },
-  { label: "Projects", href: "/projects", icon: FolderKanban },
-  { label: "Analytics", href: "/analytics", icon: BarChart3 },
-  { label: "Team", href: "/team", icon: Users },
+  { label: "Home", href: "/", icon: LayoutDashboard },
+  { label: "About", href: "/about", icon: FolderKanban },
+  { label: "Service", href: "/service", icon: BarChart3 },
+  { label: "Contact", href: "/contact", icon: Contact },
+  { label: "News", href: "/news", icon: Newspaper },
+  { label: "Premium", href: "/premium", icon: Crown },
 ] as const
 
 const userMenuItems = [
@@ -88,7 +93,7 @@ export function Navbar({ user }: Navbarprops) {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <span className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
